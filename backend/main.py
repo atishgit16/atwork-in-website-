@@ -6,6 +6,8 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from company_data import COMPANY_INFO
 
+import pathlib
+
 load_dotenv()
 
 app = FastAPI()
@@ -73,6 +75,8 @@ def test():
     return {"status": "ok"}
 
 
-# Serve React frontend (if it exists)
-if os.path.exists("../frontend/dist"):
-    app.mount("/", StaticFiles(directory="../frontend/dist", html=True), name="static")
+
+# Find the 'frontend/dist' folder relative to the backend directory
+static_dir = pathlib.Path(__file__).resolve().parent.parent / "frontend" / "dist"
+if static_dir.exists():
+    app.mount("/", StaticFiles(directory=str(static_dir), html=True), name="static")
