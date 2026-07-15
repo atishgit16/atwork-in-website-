@@ -1,4 +1,5 @@
 import os
+from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -70,3 +71,8 @@ Never invent information not in the company data. Use the following information:
 @app.get("/test")
 def test():
     return {"status": "ok"}
+
+
+# Serve React frontend (if it exists)
+if os.path.exists("../frontend/dist"):
+    app.mount("/", StaticFiles(directory="../frontend/dist", html=True), name="static")
