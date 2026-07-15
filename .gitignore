@@ -8,8 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
-dist-ssr
+
 *.local
 
 # Editor directories and files
@@ -26,7 +25,7 @@ dist-ssr
 
 # Node
 frontend/node_modules
-frontend/dist
+
 
 # Python
 backend/__pycache__
